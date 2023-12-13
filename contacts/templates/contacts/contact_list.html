@@ -1,0 +1,59 @@
+<!-- contacts/templates/contacts/contact_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+    <!-- Add Bootstrap CDN link here -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .footer {
+            margin-top: 20px;
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Contact List</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                    <tr>
+                        <td>{{ contact.name }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.phone }}</td>
+                        <td>
+                            <a href="{% url 'contacts:contact_edit' contact_id=contact.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'contacts:contact_delete' contact_id=contact.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p><a href="{% url 'contacts:new_contact' %}" class="btn btn-success btn-sm">Add New Contact</a></p>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 Sai Rohith Govindavajjala. All rights reserved.</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!-- contacts/templates/contacts/new_contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Contact</title>
+    <!-- Add Bootstrap CDN link here -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            margin-top: 20px;
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Create a New Contact</h2>
+        <form method="post" action="{% url 'contacts:new_contact' %}" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mr-2">Save Contact</button>
+            <a href="{% url 'contacts:contact_list' %}" class="btn btn-secondary">Back to Contact List</a>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2023 Sai Rohith Govindavajjala. All rights reserved.</p>
+    </footer>
+   
+</body>
+</html>

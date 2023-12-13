@@ -1,0 +1,44 @@
+<!-- contacts/templates/contacts/contact_edit.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Contact</title>
+    <!-- Add Bootstrap CDN link here -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form {
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 20px;
+            background-color: #343a40;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Contact</h2>
+        <form method="post" action="{% url 'contacts:contact_edit' contact_id=contact.pk %}" class="form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary mr-2">Save Changes</button>
+            <a href="{% url 'contacts:contact_list' %}" class="btn btn-secondary">Back to Contact List</a>
+        </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2023 Sai Rohith Govindavajjala. All rights reserved.</p>
+    </div>
+</body>
+</html>
