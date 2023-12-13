@@ -4,7 +4,7 @@ from .models import Contact
 from .forms import ContactForm
 
 def contact_list(request):
-    contacts = Contact.objects.all()
+    contacts = Contact.objects.all().order_by('-created_at')  # Order by created_at in descending order
     return render(request, 'contacts/contact_list.html', {'contacts': contacts})
 
 def new_contact(request):
@@ -12,7 +12,7 @@ def new_contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('contacts:contact_list')  # Corrected redirect
+            return redirect('contacts:contact_list')
     else:
         form = ContactForm()
 
@@ -39,5 +39,5 @@ def contact_delete(request, contact_id):
     contact = get_object_or_404(Contact, pk=contact_id)
     if request.method == 'POST':
         contact.delete()
-        return redirect('contacts:contact_list')  # Corrected redirect
+        return redirect('contacts:contact_list')
     return render(request, 'contacts/contact_delete.html', {'contact': contact})
